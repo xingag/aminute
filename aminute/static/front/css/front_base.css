@@ -1,0 +1,35 @@
+/*【通用】清除浏览器默认设置的一些样式*/
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    list-style: none;
+}
+
+/*定义内容区的版心*/
+/*width 指定固定宽度*/
+/*0 auto 居中展示*/
+/*overflow:hidden 清除浮动，防止浮动塌陷*/
+.main-container {
+    width: 990px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/*大版心：左边的版心*/
+.lg-container {
+    width: 730px;
+    float: left;
+}
+
+/*小板心：右边的内容区;保证大小版区之间有10px间隔,更美观*/
+.sm-container {
+    width: 250px;
+    float: right;
+}
+
+
+
+
+

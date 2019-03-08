@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>登录-深圳头条一分钟</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    {#    此处要修改为引用本地的css文件#}
+    <link href="{{ url_for('static',filename='cms/css/signin.css') }}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    {#    注意：所有input标签都要加入name属性，方便引用管理#}
+    <form class="form-signin" method="post">
+        <h2 class="form-signin-heading">请登录</h2>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label for="inputEmail" class="sr-only">邮箱</label>
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="请输入邮箱地址" required autofocus>
+        <label for="inputPassword" class="sr-only">密码</label>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="请输入密码" required>
+        <div class="checkbox">
+            <label>
+                <input name="remember" type="checkbox" value="1">记住我
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">立即登录</button>
+    </form>
+    {#错误信息【可能会出现】#}
+    {#https://v3.bootcss.com/css#}
+    {% if message %}
+        <p style="text-align: center" class="text-danger">
+            {{ message }}
+        </p>
+    {% endif %}
+</div>
+
+</body>
+</html>
+

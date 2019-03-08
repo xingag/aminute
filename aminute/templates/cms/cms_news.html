@@ -1,0 +1,130 @@
+{% extends 'cms/cms_base.html' %}
+{% from 'common/_macros.html' import static %}
+
+{% block title %}
+    新闻管理
+{% endblock %}
+
+{% block head %}
+    <script src="https://cdn.staticfile.org/Plupload/2.1.1/moxie.js"></script>
+    <script src="https://cdn.staticfile.org/Plupload/2.1.1/plupload.dev.js"></script>
+    <script src="https://cdn.staticfile.org/qiniu-js-sdk/1.0.14-beta/qiniu.js"></script>
+    <script src="{{ static('common/zlqiniu.js') }}"></script>
+    <link rel="stylesheet" href="{{ static('cms/css/cms_news.css') }}">
+    <script src="{{ static('cms/js/news.js') }}"></script>
+{% endblock %}
+
+
+{% block page_title %}
+    {{ self.title() }}
+{% endblock %}
+
+
+{% block main_content %}
+
+    <div class="top-box">
+        <button class="btn btn-warning" data-toggle="modal" data-target="#news-dialog">添加一条新闻</button>
+    </div>
+
+    <table class="table table-bordered banner-table">
+        <thead>
+        <tr>
+            <th>标题</th>
+            <th>内容</th>
+            <th>图片</th>
+            <th>链接</th>
+            <th>新闻日期</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for new in news %}
+            <tr data-title="{{ new.title }}" data-content="{{ new.content }}"
+                data-img="{{ new.img }}" data-link="{{ new.link }}" data-current_date="{{ new.current_date }}"
+                data-id="{{ new.id }}">
+                <td>{{ new.title }}</td>
+                <td>{{ new.content }}</td>
+                <td><a href="{{ new.img }}" target="_blank">{{ new.img }}</a></td>
+                <td><a href="{{ new.link }}" target="_blank">{{ new.link }}</a></td>
+                <td>{{ new.current_date|getDate }}</td>
+                <td>{{ new.create_time }}</td>
+                <td>
+                    <button class="btn btn-default btn-xs edit-news-btn">编辑</button>
+                    <button class="btn btn-danger btn-xs delete-news-btn">删除</button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+
+    </table>
+
+    <div class="modal fade" id="news-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新闻</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form class="form-horizontal">
+
+                        {# 新闻标题#}
+                        <div class="form-group">
+                            <label for="titleInput" class="col-sm-2 control-label">标题：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="title" placeholder="请输入标题"
+                                       id="titleInput">
+                            </div>
+                        </div>
+
+
+                        {# 新闻内容#}
+                        <div class="form-group">
+                            <label for="contentInput" class="col-sm-2 control-label">内容：</label>
+                            <div class="col-sm-10">
+                                {#<input type="text" class="form-control" name="name" placeholder="请输入新闻详情" id="contentInput">#}
+                                <textarea class="form-control" rows="3" placeholder="请输入新闻详情" name="content"
+                                          id="contentInput"></textarea>
+                            </div>
+                        </div>
+
+                        {#插图#}
+                        <div class="form-group">
+                            <label for="imgInput" class="col-sm-2 control-label">插图：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="image_url" placeholder="" id="imgInput">
+                            </div>
+
+                            <button class="btn btn-info col-sm-2" id="upload-btn1">添加图片</button>
+                        </div>
+
+                        {# 新闻链接地址#}
+                        <div class="form-group">
+                            <label for="linkInput" class="col-sm-2 control-label">链接：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="link_url" placeholder="请写明新闻出处"
+                                       id="linkInput">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date-input" class="col-sm-2 control-label">日期：</label>
+                            <div class="col-sm-10">
+                                <input type="date" name="current_date" class="form-control" value="{{ current_date }}"
+                                       id="date-input"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="close-banner-btn">关闭</button>
+                    <button type="button" class="btn btn-primary" id="save-news-btn">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

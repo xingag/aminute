@@ -1,0 +1,16 @@
+{#前后台：通用的一些模板信息#}
+
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+{#jquery库必须放在bootstrap.min.js之上，因为bootstrap.min.js里面有引用jquery库的内容#}
+<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+{#对ajax的封装#}
+<script src="{{ url_for('static',filename='common/zlajax.js') }}"></script>
+{#通用的对话框导入#}
+<link rel="stylesheet" href="{{ url_for('static',filename='common/sweetalert/sweetalert.css') }}">
+<script src="{{ url_for('static',filename='common/sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ url_for('static',filename='common/sweetalert/zlalert.js') }}"></script>
+

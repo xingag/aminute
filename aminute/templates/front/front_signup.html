@@ -1,0 +1,50 @@
+{% extends 'front/front_sign_base.html' %}
+{% block title %}
+    知了课堂-注册
+{% endblock %}
+
+{% block head %}
+    {#    <link rel="stylesheet" href="{{ static('front/css/front_signup.css') }}">#}
+    <script src="{{ static('front/js/front_signup.js') }}"></script>
+{% endblock %}
+
+
+
+{% block h2_block %}
+    注册
+{% endblock %}
+
+
+{#内容区#}
+{% block signbox %}
+    {#        发送验证码#}
+    <div class="form-group">
+
+        <input type="text" name="telephone" placeholder="手机号码" class="form-control">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <input type="text" name="username" placeholder="用户名" class="form-control">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <input type="password" name="password1" placeholder="请输入密码" class="form-control">
+
+    </div>
+
+    <div class="form-group">
+        <input type="password" name="password2" placeholder="请确认密码" class="form-control">
+
+    </div>
+
+    <div class="form-group">
+        {#btn-block 样式可以展示成外围宽度#}
+        <button class="btn btn-warning btn-block" id="submit-btn">立即注册</button>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+.top-box button {
+    float: right;
+}
+
+/*设置表格的td宽度固定，如果超出就用省略号显示*/
+.banner-table {
+    table-layout: fixed;
+}
+
+.banner-table td {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#contentInput {
+    height: 100px;
+}

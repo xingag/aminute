@@ -1,0 +1,135 @@
+/*给盒子设置圆角*/
+/*overflow:hidden 如果子控件超出，就隐藏*/
+.index-banner {
+    border-radius: 10px;
+    overflow: hidden;
+    height: 300px;
+}
+
+.index-banner img {
+    height: 300px;
+}
+
+/*外边框，顶部距离*/
+.news-group {
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/*子元素都浮动了，这里必须要清除浮动，不然就会浮动塌陷*/
+/*不需要点点*/
+.news-group-head {
+    overflow: hidden;
+    list-style: none;
+}
+
+.news-group-head li {
+    float: left;
+    padding: 5px 10px;
+}
+
+/*默认a标签颜色为黑色*/
+.news-group-head li a {
+    color: #333;
+}
+
+/*li标签选中后的颜色*/
+.news-group-head li.active {
+    background: #ccc;
+}
+
+.post-group-head li {
+    float: left;
+    padding: 5px 10px;
+}
+
+/*默认a标签颜色为黑色*/
+.post-group-head li a {
+    color: #333;
+}
+
+/*li标签选中后的颜色*/
+.post-group-head li.active {
+    background: #ccc;
+}
+
+.news-list-group {
+    margin-top: 20px;
+}
+
+.author-avatar-group {
+    float: left;
+}
+
+/*防止浮动塌陷*/
+.news-list-group li {
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+/*帖子头像*/
+.author-avatar-group img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/*底部加入一个分割线*/
+.news-info-group {
+    float: left;
+    margin-left: 10px;
+    border-bottom: 1px solid #e6e6e6;
+    width: 85%;
+    padding-bottom: 10px;
+}
+
+/*div下面字体的大小和颜色*/
+.news-info-group .news-info {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #8c8c8c;
+}
+
+.news-info span {
+    margin-right: 10px;
+}
+
+/*小板心：右边的内容区;保证大小版区之间有10px间隔,更美观*/
+.sm-container {
+    width: 260px;
+    float: right;
+}
+
+/*天气、房产*/
+.common-container {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    float: right;
+    padding: 10px;
+    margin-bottom: 40px;
+}
+
+.common-container > p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+body {
+    padding-bottom: 20px;
+}
+
+h4 {
+    text-align: center;
+}
+
+
+
+
+
+
+
+

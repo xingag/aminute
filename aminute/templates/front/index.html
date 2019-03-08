@@ -1,0 +1,126 @@
+{% extends 'front/front_base.html' %}
+{% from 'common/_macros.html' import static %}
+
+{% block title %}深圳一分钟资讯{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ static('front/css/front_index.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="lg-container">
+
+        <div id="carousel-example-generic" class="carousel slide index-banner" data-ride="carousel">
+
+            <!-- 指示器 -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+
+            <!-- 轮播图 -->
+            <div class="carousel-inner" role="listbox">
+
+                {#循环遍历数据显示，如果是第一条，就设置为active样式，否则就是默认的样式#}
+                {% for banner in banners %}
+                    {% if loop.first %}
+                        <div class="item active">
+                    {% else %}
+                        <div class="item">
+                    {% endif %}
+
+
+                <a href="{{ banner.link_url }}">
+                    <img src="{{ banner.image_url }}" alt="...">
+                </a>
+                </div>
+
+                {% endfor %}
+
+                <!-- 左右切换的控制按钮 -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                </div>
+            </div>
+
+
+            {#新闻列表区域#}
+            <div class="news-group">
+
+                {#排列条件#}
+                 <ul class="news-group-head">
+
+                    {#注意：快捷生成4个【li>a】标签：(li>a)*4 + Tab键#}
+                    {# 1./：返回首页#}
+
+                    {% if current_sort==1 %}
+                        <li class="active"><a href="{{ url_for("front.index",sort=1) }}">全部</a>
+                        </li>
+                    {% else %}
+                        <li><a href="{{ url_for("front.index",sort=1) }}">全部</a></li>
+                    {% endif %}
+
+
+                    {# 2.st=2 参数为2，代表只显示今天的新闻#}
+                    {% if current_sort==2 %}
+                        <li class="active"><a href="{{ url_for("front.index",sort=2) }}">只看今天</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for("front.index",sort=2) }}">只看今天</a></li>
+                    {% endif %}
+
+                </ul>
+
+                {#新闻列表-按时间排序#}
+                <ul class="news-list-group">
+                    {% for new in news %}
+                        <li>
+                            <div class="author-avatar-group">
+                                <img src="{{ new.img or url_for('static',filename='common/images/logo.png') }}"
+                                     alt="">
+                            </div>
+                            <div class="news-info-group">
+                                <p class="news-title">
+                                    <a href="{{ url_for('front.news_detail',news_id=new.id) }}">{{ new.title }}</a>
+                                </p>
+                                <p class="news-info">
+                                    <span>有效期：{{ new.current_date }}</span>
+                                    <span>发表时间：{{ new.create_time }}</span>
+                                </p>
+                            </div>
+                        </li>
+                    {% endfor %}
+
+                </ul>
+
+                {#翻页控件：https://pythonhosted.org/Flask-paginate/#}
+                <div style="text-align: center">
+                    {{ pagination.links }}
+                </div>
+            </div>
+        </div>
+        <div class="sm-container">
+            <div class="common-container">
+                <h4> {{ current_date }}&thinsp; {{ curWeek }}</h4>
+                <p><span class="weather">{{ weather.weather }}</span></p>
+                <p><span class="weather-other">{{ weather.weather_other }}</span></p>
+            </div>
+
+            <div class="common-container">
+                <h4>实时房产信息</h4>
+                <p><span>一周新房成交均价为 {{ house.house_week_new_value }} 元/m³</span></p>
+                <p><span>一周二手房成交均价为 {{ house.house_week_old_value }} 元/m³</span></p>
+                <p>
+                    <span>昨日新房成交共 {{ house.house_yestoday_trans_num }} 套，均价 {{ house.house_yestoday_trans_price }} 元/m³</span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

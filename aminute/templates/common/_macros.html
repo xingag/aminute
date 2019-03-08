@@ -1,0 +1,7 @@
+{#定义宏的集合类#}
+
+{# 1.引用静态资源的宏，用到地方非常的多 #}
+{# 注意：如果想清楚源代码中的换行符，可以前后分别加入一个【-】号。 #}
+{% macro static(filename) -%}
+    {{ url_for('static',filename=filename) }}
+{%- endmacro %}

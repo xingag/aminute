@@ -1,0 +1,39 @@
+{% extends 'front/front_base.html' %}
+{% from "common/_macros.html" import static %}
+
+
+{% block title %}
+    {{ news.title }}
+{% endblock %}
+
+{% block head %}
+    <script src="{{ static('front/js/front_news_detail.js') }}"></script>
+    <link rel="stylesheet" href="{{ static('front/css/front_news_detail.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="lg-container">
+        <div class="news-container">
+
+            <h2>{{ news.title }}</h2>
+
+            <p class="news-info-group">
+                <span>有效期：{{ news.create_time }}</span>
+                <span>发表时间：{{ news.create_time }}</span>
+            </p>
+
+            {% if news.img %}
+                <img src="{{ news.img }}">
+            {% endif %}
+
+            {# 帖子详情#}
+            {# safe:包含html标签、包含样式；没有safe就是纯文本#}
+            {# 注意：这里绑定帖子的id，便于js使用#}
+            <article class="post-content" id="post-content" data-id="{{ news.id }}">
+                {{ news.content|safe }}
+            </article>
+        </div>
+    </div>
+
+{% endblock %}

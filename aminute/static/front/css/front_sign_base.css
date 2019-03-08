@@ -1,0 +1,46 @@
+body {
+    background: #f3f3f3;
+}
+
+/*{#清除浮动#}*/
+.outer-box {
+    width: 854px;
+    background: #fff;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.logo-box {
+    padding-top: 40px;
+    text-align: center;
+}
+
+.logo-box img {
+    width: 60px;
+    height: 60px;
+}
+
+.page-title {
+    text-align: center;
+}
+
+.sign-box {
+    width: 300px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+/*{#去除内边距#}*/
+/*{#overflow:如果子控件超出，就隐藏掉#}*/
+.captcha-addon {
+    padding: 0px;
+    overflow: hidden;
+}
+
+/*{#图形验证码#}*/
+/*{#cursor: pointer; 鼠标放在上面，会显示一个小手#}*/
+.captcha-img {
+    width: 94px;
+    height: 32px;
+    cursor: pointer;
+}
